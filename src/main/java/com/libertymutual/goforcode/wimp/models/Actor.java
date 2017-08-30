@@ -28,7 +28,6 @@ public class Actor {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.activeSinceYear = activeSinceYear;
-		//this.birthDate = birthDate;
 	}
 	
 	
