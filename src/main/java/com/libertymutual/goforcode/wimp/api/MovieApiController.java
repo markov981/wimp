@@ -23,10 +23,13 @@ import com.libertymutual.goforcode.wimp.repositories.MovieRepository;
 public class MovieApiController {
 	
 	private MovieRepository mvRepo; 
-	
+	private ActorRepository actorRepo; 
 
-	public MovieApiController(MovieRepository mvRepo) {		
-		this.mvRepo = mvRepo;		
+	
+	public MovieApiController(MovieRepository mvRepo, ActorRepository actorRep) {		
+		this.mvRepo    = mvRepo;	
+		this.actorRepo = actorRep;	
+		
 		mvRepo.save(new Movie("One", "ABC", 1000000l));
 		mvRepo.save(new Movie("Two", "MGM", 2_000_000l));
 		mvRepo.save(new Movie("Google", "XXX", 3000l));				
@@ -38,14 +41,32 @@ public class MovieApiController {
 	public List<Movie> getAll(){
 		return mvRepo.findAll();	
 	}
+
+	
+	@PostMapping("{movieid}/actors")
+	public Movie associateAnActor(@PathVariable long movieid, @RequestBody Actor actor) {
 		
+		Movie movie = mvRepo.findOne(movieid);
+		actor = actorRepo.findOne(actor.getId());
+		movie.addActor(actor);
+		mvRepo.save(movie);
+		return movie;			
+	}
+	
+	
+	
+	@PostMapping("")
+	public Movie create(@RequestBody Movie mv) {
+		return mvRepo.save(mv);	
+	}
+	
 	
 	@GetMapping("{id}")
 	public Movie getOne(@PathVariable long id) throws MovieNotFoundException{
 		Movie mv = mvRepo.findOne(id);
 		
 		if(mv == null) {
-			throw new MovieNotFoundException(); // sends back 404 status
+			throw new MovieNotFoundException(); 
 		}		
 		return mv;		
 	}
@@ -62,11 +83,6 @@ public class MovieApiController {
 	}
 }
 	
-
-	@PostMapping("")
-	public Movie create(@RequestBody Movie mv) {
-		return mvRepo.save(mv);	
-	}
 	
 
 	@PutMapping("{id}")

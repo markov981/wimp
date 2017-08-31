@@ -1,12 +1,26 @@
 package com.libertymutual.goforcode.wimp.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+
+//2nd approach
+//@JsonIdentityInfo(
+//		generator = ObjectIdGenerators.PropertyGenerator.class,
+//		property="id")
 
 
 
@@ -19,7 +33,17 @@ public class Actor {
 	
 	private Date birthDate;
 	
-	private Long activeSinceYear;	
+	private Long activeSinceYear;
+	
+	
+	//1st approach 
+	@JsonIgnore 
+	@ManyToMany(mappedBy="actors")
+	private List<Movie> movies;
+	
+	
+	@OneToMany(mappedBy = "actor")
+	private List<Award> awards;
 	
 	
 	public Actor() {}
@@ -30,6 +54,7 @@ public class Actor {
 		this.activeSinceYear = activeSinceYear;
 	}
 	
+
 	
 	@Column(length=75, nullable=false)
 	private String firstName;
@@ -38,6 +63,13 @@ public class Actor {
 	private String lastName;
 
 
+	public void addAward(Award award) { 
+		if (awards ==null) {
+			awards = new ArrayList<Award>();
+		}
+		awards.add(award);
+	}
+	
 	
 	
 	public Long getId() {
@@ -79,6 +111,14 @@ public class Actor {
 
 	public void setActiveSinceYear(Long activeSinceYear) {
 		this.activeSinceYear = activeSinceYear;
+	}
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovie(List<Movie> movie) {
+		this.movies = movies;
 	}
 
 }
