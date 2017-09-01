@@ -73,7 +73,7 @@ public class ActorControllerApiTests {
 		actor.setActiveSinceYear(1999L);
 		actor.setBirthDate(now);
 		actor.setFirstName("Bob");
-		actor.setId(11L);
+		actor.setId(22L);
 		actor.setLastName("Saget");
 		actor.setMovie(new ArrayList<Movie>());		
 		when(actorRepo.findOne(22L)).thenReturn(actor); 
@@ -86,7 +86,7 @@ public class ActorControllerApiTests {
 		assertThat(actual.getActiveSinceYear()).isEqualTo(1999L);
 		assertThat(actual.getFirstName()).isEqualTo("Bob");
 		assertThat(actual.getLastName()).isEqualTo("Saget");
-		assertThat(actual.getId()).isSameAs(11L);
+		assertThat(actual.getId()).isSameAs(22L);
 		assertThat(actual.getBirthDate()).isEqualTo(now);
 		assertThat(actual.getMovies()).isEqualTo(new ArrayList<Movie>());		
 		verify(actorRepo).findOne(22L);		

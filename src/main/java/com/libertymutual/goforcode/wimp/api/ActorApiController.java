@@ -73,6 +73,7 @@ public class ActorApiController {
 		newA.setMovie(actor.getMovies());
 		newA.setFirstName(actor.getFirstName());
 		newA.setLastName(actor.getLastName());
+		newA.setId(actor.getId());
 			
 		return newA;
 				
