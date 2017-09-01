@@ -29,7 +29,7 @@ public class ActorApiController {
 	private AwardRepository awardRepo; 
 	
 
-	public ActorApiController(ActorRepository actorRepo, AwardRepository awardRepo) {
+	public ActorApiController(ActorRepository actorRepo) {
 		
 		this.actorRepo = actorRepo;
 		
@@ -47,15 +47,16 @@ public class ActorApiController {
 	
 	
 	// Awards
-	@PostMapping("{actorid}/awards")
-	public Actor associateAnAward(@PathVariable long actorid, @RequestBody Award award) {
-		
-		Actor actor = actorRepo.findOne(actorid);
-		award = awardRepo.findOne(award.getId());
-		actor.addAward(award);
-		actorRepo.save(actor);
-		return actor;			
-	}		
+//	@PostMapping("{actorid}/awards")
+//	public Actor associateAnAward(@PathVariable long actorid, @RequestBody Award award) {
+//		
+//		Actor actor = actorRepo.findOne(actorid);
+//		award = awardRepo.findOne(award.getId());
+//		actor.addAward(award);
+//		actorRepo.save(actor);
+//		return actor;			
+//	}		
+//	
 	
 	
 	

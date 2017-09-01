@@ -3,7 +3,6 @@ package com.libertymutual.goforcode.wimp.models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 
 //2nd approach
@@ -63,12 +60,12 @@ public class Actor {
 	private String lastName;
 
 
-	public void addAward(Award award) { 
-		if (awards ==null) {
-			awards = new ArrayList<Award>();
-		}
-		awards.add(award);
-	}
+//	public void addAward(Award award) { 
+//		if (awards ==null) {
+//			awards = new ArrayList<Award>();
+//		}
+//		awards.add(award);
+//	}
 	
 	
 	
@@ -117,7 +114,7 @@ public class Actor {
 		return movies;
 	}
 
-	public void setMovie(List<Movie> movie) {
+	public void setMovie(List<Movie> movies) {
 		this.movies = movies;
 	}
 

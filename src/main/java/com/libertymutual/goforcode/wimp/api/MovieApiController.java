@@ -16,10 +16,15 @@ import com.libertymutual.goforcode.wimp.models.Movie;
 import com.libertymutual.goforcode.wimp.repositories.ActorRepository;
 import com.libertymutual.goforcode.wimp.repositories.MovieRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 
 
 @RestController
 @RequestMapping("api/movies")
+@Api(description="Add more info.")
 public class MovieApiController {
 	
 	private MovieRepository mvRepo; 
@@ -38,6 +43,7 @@ public class MovieApiController {
 	
 	
 	@GetMapping("")
+	@ApiOperation(value = "Add description", notes="some more detail")
 	public List<Movie> getAll(){
 		return mvRepo.findAll();	
 	}

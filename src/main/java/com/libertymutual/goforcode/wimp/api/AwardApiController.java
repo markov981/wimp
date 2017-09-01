@@ -18,6 +18,7 @@ import com.libertymutual.goforcode.wimp.models.Movie;
 import com.libertymutual.goforcode.wimp.repositories.ActorRepository;
 import com.libertymutual.goforcode.wimp.repositories.AwardRepository;
 import com.libertymutual.goforcode.wimp.repositories.MovieRepository;
+import org.junit.Before;
 
 
 
@@ -37,23 +38,8 @@ public class AwardApiController {
 	}
 	
 	
-	
 	@GetMapping("")
 	public List<Award> getAll(){
 		return awardRepo.findAll();	
-	}
-	
-	
-	// Awards
-//	@PostMapping("{actorid}/awards")
-//	public Actor associateAnAward(@PathVariable long actorid, @RequestBody Award award) {
-//		
-//		Actor actor = actorRepo.findOne(actorid);
-//		award = awardRepo.findOne(award.getId());
-//		actor.addAward(award);
-//		actorRepo.save(actor);
-//		return actor;			
-//	}		
-	
-	
+	}	
 }

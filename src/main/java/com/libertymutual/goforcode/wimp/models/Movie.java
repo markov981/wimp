@@ -11,10 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-
 // 2nd approach
 //@JsonIdentityInfo(
 //		generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -103,9 +99,6 @@ public class Movie {
 		this.distributor = distributor;
 	}
 
-	public void setActor(List<Actor> actors) {
-		this.actors = actors;
-	}
 
 	public List<Actor> getActors() {
 		return actors;
