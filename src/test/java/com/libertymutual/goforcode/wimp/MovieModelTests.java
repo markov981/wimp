@@ -46,15 +46,13 @@ public class MovieModelTests {
 	}
 	
 
-
 	@Test
 	public void test_that_an_actor_is_added_to_a_movie() {
 		Actor act = new Actor();
 		mv.addActor(act);
 		assertThat(mv.getActors()).contains(act);
 	}
-	
-	
+		
 	@Test
 	public void test_get_set_id_for_movie() {			
 		mv.setId(20L);

@@ -59,8 +59,7 @@ public class MovieApiController {
 		return movie;			
 	}
 	
-	
-	
+		
 	@PostMapping("")
 	public Movie create(@RequestBody Movie mv) {
 		return mvRepo.save(mv);	
@@ -87,10 +86,9 @@ public class MovieApiController {
 	} catch(EmptyResultDataAccessException e){
 			return null;	
 	}
-}
+    }
 	
 	
-
 	@PutMapping("{id}")
 	public Movie update(@RequestBody Movie mv, @PathVariable long id) {
 		mv.setId(id);

@@ -82,8 +82,12 @@ public class ActorApiController {
 	}
 
 	
-	
+	@PostMapping("")
+	 	public Actor create(@RequestBody Actor actor) {
+	 		return actorRepo.save(actor);	
+	 	}	
 
+	
 	@DeleteMapping("{id}")
 	public Actor delete(@PathVariable long id){
 		try {
