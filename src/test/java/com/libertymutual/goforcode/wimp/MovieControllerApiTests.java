@@ -148,8 +148,7 @@ public class MovieControllerApiTests {
 		Movie actual = controller.create(mv);
 			
 		// Assert
-		assertThat(actual).isSameAs(mv);
-		//assertThat(actual.getId()).isEqualTo(22);		
+		assertThat(actual).isSameAs(mv);	
 	}
 	
 		

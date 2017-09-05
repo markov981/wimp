@@ -28,7 +28,16 @@ public class Movie {
 	
 	private Date releaseDate;
 	
-
+	
+	public Movie() {}
+	
+	public Movie(String title, String distributor, Long budget) {
+		this.title = title;
+		this.distributor = distributor;
+		this.budget = budget;
+	}
+	
+	
 	@ManyToMany
 	private List<Actor> actors;
 	
@@ -39,15 +48,6 @@ public class Movie {
 	
 	@Column(length=500, nullable=false)
 	private String distributor;
-
-	
-	public Movie() {}
-	
-	public Movie(String title, String distributor, Long budget) {
-		this.title = title;
-		this.distributor = distributor;
-		this.budget = budget;
-	}
 	
 	
 	public void addActor(Actor actor) { 

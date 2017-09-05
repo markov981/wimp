@@ -26,13 +26,13 @@ import com.libertymutual.goforcode.wimp.repositories.ActorRepository;
 
 public class ActorControllerApiTests {
 	
-	private ActorRepository actorRepo; 
+	private ActorRepository    actorRepo; 
 	private ActorApiController controller;
 	
 	
 	@Before
 	public void setUp() { 
-		actorRepo    = mock(ActorRepository.class); 
+		actorRepo  = mock(ActorRepository.class); 
 		controller = new ActorApiController(actorRepo);
 		}
 	
@@ -119,6 +119,21 @@ public class ActorControllerApiTests {
 		assertThat(actual.getId()).isEqualTo(22);		
 	}	
 	
+
+	// Create
+	@Test
+	public void test_actor_record_is_created(){
+			
+		// Arrange
+		Actor actor = new Actor();				
+		when(actorRepo.save(actor)).thenReturn(actor); 
+			
+		// Act
+		Actor actual = controller.create(actor);
+			
+		// Assert
+		assertThat(actual).isSameAs(actor);	
+	}
 	
 	
 	// Delete

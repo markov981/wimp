@@ -1,7 +1,6 @@
 package com.libertymutual.goforcode.wimp.api;
 
 import java.util.List;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.libertymutual.goforcode.wimp.models.Actor;
 import com.libertymutual.goforcode.wimp.models.ActorWithMovies;
-import com.libertymutual.goforcode.wimp.models.Award;
-import com.libertymutual.goforcode.wimp.models.Movie;
 import com.libertymutual.goforcode.wimp.repositories.ActorRepository;
-import com.libertymutual.goforcode.wimp.repositories.AwardRepository;
-import com.libertymutual.goforcode.wimp.repositories.MovieRepository;
+
 
 
 
@@ -25,12 +21,9 @@ import com.libertymutual.goforcode.wimp.repositories.MovieRepository;
 @RequestMapping("api/actors")
 public class ActorApiController {
 	
-	private ActorRepository actorRepo; 
-	private AwardRepository awardRepo; 
-	
+	private ActorRepository actorRepo; 	
 
-	public ActorApiController(ActorRepository actorRepo) {
-		
+	public ActorApiController(ActorRepository actorRepo) {		
 		this.actorRepo = actorRepo;
 		
 		actorRepo.save(new Actor("James", "Shmond", 1970l));
@@ -65,7 +58,8 @@ public class ActorApiController {
 		Actor actor = actorRepo.findOne(id);		
 		if(actor == null) {
 			throw new ActorNotFoundException(); 
-		}	
+		}
+		
 		// 1st approach 		
 		ActorWithMovies newA = new ActorWithMovies();
 		newA.setActiveSinceYear(actor.getActiveSinceYear());
@@ -85,19 +79,7 @@ public class ActorApiController {
 	@PostMapping("")
 	 	public Actor create(@RequestBody Actor actor) {
 	 		return actorRepo.save(actor);	
-	 	}	
-
-	
-	@DeleteMapping("{id}")
-	public Actor delete(@PathVariable long id){
-		try {
-		Actor actor = actorRepo.findOne(id);
-		actorRepo.delete(id);
-		return actor;
-	} catch(EmptyResultDataAccessException e){
-		return null;	
-	}
-}
+	 }	
 
 	
 	@PutMapping("{id}")
@@ -105,4 +87,17 @@ public class ActorApiController {
 		actor.setId(id);
 		return actorRepo.save(actor);	
 	}
+	
+	
+	@DeleteMapping("{id}")
+	public Actor delete(@PathVariable long id){
+		try {
+			Actor actor = actorRepo.findOne(id);
+			actorRepo.delete(id);
+			return actor;
+	} catch(EmptyResultDataAccessException e){
+			return null;	
+	}		
+  }
+	
 }
